@@ -37,8 +37,9 @@ FROM film;
 SELECT COUNT(*) AS rented_films_count
 FROM rental;
 
+
 #5.4 Determine the number of distinct last names of the actors in the database.
-SELECT DISTINCT last_name
+SELECT count(DISTINCT(last_name))
 FROM actor;
 
 #6.Retrieve the 10 longest films.
@@ -54,9 +55,7 @@ FROM actor
 WHERE first_name = 'SCARLETT';
 
 #7.2 Retrieve all movies that have ARMAGEDDON in their title and have a duration longer than 100 minutes.
-SELECT *
-FROM film 
-WHERE title
+SELECT * FROM film WHERE title
 LIKE '%ARMAGEDDON%' AND length > 100;
 
 #Hint: use LIKE operator. More information here.

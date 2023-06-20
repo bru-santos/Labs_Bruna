@@ -28,16 +28,14 @@ LIMIT 20;
 
 #2.3 Retrieve rental information and add an additional column called DAY_TYPE with values 'weekend' or 'workday', depending on the day of the week. 
 #Hint: use a conditional expression.
-SELECT rental_id, rental_date,
-       CASE WHEN DAYOFWEEK(rental_date) IN (1, 7) THEN 'weekend'
-            ELSE 'workday' END AS DAY_TYPE
+SELECT rental_id, rental_date, CASE WHEN WEEKDAY(rental_date)>6 THEN 'weekend'ELSE 'workday' END AS DAY_TYPE
 FROM rental;
 
 #3.We need to ensure that our customers can easily access information about our movie collection. 
 #To achieve this, retrieve the film titles and their rental duration. If any rental duration value is NULL, replace it with the string 'Not Available'. 
 #Sort the results by the film title in ascending order. 
 #Please note that even if there are currently no null values in the rental duration column, the query should still be written to handle such cases in the future.
-SELECT title, COALESCE(rental_duration, 'Not Available') AS rental_duration
+SELECT title, IFNULL(rental_duration, 'Not Available') AS rental_duration
 FROM film
 ORDER BY title ASC;
 
